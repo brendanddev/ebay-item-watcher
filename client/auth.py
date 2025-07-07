@@ -9,7 +9,7 @@ Brendan Dileo - July 2025
 
 import base64
 import requests
-import config
+from client import config
 
 # Retrieves the access token for the app
 def get_app_access_token():
@@ -41,8 +41,3 @@ def get_app_access_token():
     else:
         print("Failed to get token:", response.status_code, response.json())
         return None
-
-# Prints token
-if __name__ == "__main__":
-    token = get_app_access_token()
-    print("Access Token:", token)

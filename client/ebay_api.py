@@ -35,14 +35,3 @@ def search(query):
         print("Search failed:", response.status_code, response.text)
         return None
 
-# Testing
-if __name__ == "__main__":
-    query = "laptop"
-    results = search(query)
-    if results:
-        print("Search Results:", results)
-    else:
-        print("No results found.")
-
-
-    
