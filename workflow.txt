@@ -1,4 +1,36 @@
 
+---- App Workflow ----
+
+1. User Input & Configuration
+    - User defines search criteria
+        ➼ Keywords (e.g., Secret Wars, Infinity Gauntlet, etc)
+        ➼ Price range 
+        ➼ Location based filters
+    - User sets notification method
+        ➼ Telegram bot
+        ➼ Email
+
+2. Scheduled Execution
+    - App runs on fixed interval
+    - Scheduling tools like schedule, cron, or manual loops
+
+3. Perform Search
+    - Calls eBay browse API with specified search params
+    - Parses the response, filters the result, and formats response
+
+4. Notification Logic
+    - If new listings are found:
+        ➼ Format relevant details (title, price, link, etc)
+        ➼ Send a formatted message via notification method specified by user
+    - If no new listings are found: 
+        ➼ Optionally notify user
+
+5. Repeat
+    - Loop continues as long as app is running or scheduled
+
+
+
+
 # Notify the user anytime the search returns results
 # Search results need to be formatted, not raw json
 
