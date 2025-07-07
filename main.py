@@ -22,4 +22,3 @@ if __name__ == "__main__":
         print("Search Results:", results)
     else:
         print("No results found.")
-    

@@ -34,4 +34,3 @@ def search(query):
     else:
         print("Search failed:", response.status_code, response.text)
         return None
-
