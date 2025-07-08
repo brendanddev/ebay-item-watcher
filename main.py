@@ -10,7 +10,6 @@ from client.auth import get_app_access_token
 from client.ebay_api import build_search_params, search
 from client.notifier import send_telegram_message
 from client.formatter import format_search_results
-from client.filters import filter_local_items
 
 
 if __name__ == "__main__":
@@ -32,22 +31,16 @@ if __name__ == "__main__":
         pickup_radius=1,
         item_location_region="ON",
         item_location_country="CA",
+        canada_only=True,
         limit=15
     )
 
     # Perform the search
     results = search(params)
     if results:
-        print("Search Results:", results)
-        items = results.get("itemSummaries", [])
-        local_items = filter_local_items(items, local_postal_prefix="L6L", local_country="CA")
-        
-        print(f"Filtered {len(local_items)} local items:")
-        for item in local_items:
-            print(f"- {item['title']} ({item['itemLocation']['postalCode']})")
-        
-        # formatted_results = format_search_results(results)
-        # print("Formatted Results:\n", formatted_results)
+        # print("Search Results:", results)
+        formatted_results = format_search_results(results)
+        print("Formatted Results:\n", formatted_results)
         # send_telegram_message(formatted_results)
     else:
         print("No results found or search failed.")

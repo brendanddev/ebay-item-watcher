@@ -20,9 +20,10 @@ def build_search_params(
     pickup_postal_code=None,
     pickup_radius=None,
     item_location_region=None,
-    item_location_country=None,
+    item_location_country="CA",
+    canada_only=True,
     limit=25
-):  
+):
     
     # Initialize params dictionary with required keyword and limit
     params = {"q": keyword, "limit": str(limit)}
@@ -35,21 +36,24 @@ def build_search_params(
     # Add the price currency filter if provided
     if price_currency:
         filters.append(f"priceCurrency:{price_currency}")
+        
+    if canada_only:
+        filters.append("itemLocationCountry:CA")
+        filters.append("buyerCountry:CA")
     
     if pickup_postal_code and pickup_radius:
         params["pickupPostalCode"] = pickup_postal_code
         params["pickupRadius"] = str(pickup_radius)
     if item_location_region:
         params["itemLocationRegion"] = item_location_region
-    if item_location_country:
-        params["itemLocationCountry"] = item_location_country
+    if item_location_country and not canada_only:
+        filters.append(f"itemLocationCountry:{item_location_country}")
 
     # Join filters with commans to add to params if any filters were added
     if filters:
         params["filter"] = ",".join(filters)
 
     return params
-
 
 # Searches for an item on ebay using the buy API
 def search(params):
@@ -70,7 +74,8 @@ def search(params):
     # Define request headers
     headers = { 
         "Authorization": f"Bearer {token}",
-        "X-EBAY-C-MARKETPLACE-ID": "EBAY_CA"
+        "X-EBAY-C-MARKETPLACE-ID": "EBAY_CA",
+        "X-EBAY-C-ENDUSERCTX": "countryCode=CA,currencyCode=CAD"
     }
     
     # Make GET request and store response
