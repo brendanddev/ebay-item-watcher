@@ -11,6 +11,18 @@ from client import config
 
 # Sends a message to a telegram chat
 def send_telegram_message(message: str):
-    url = config.telegram_send_message_url
     
-    response = requests.post(url)
+    # Construct url and define payload containing target chat and message
+    url = config.telegram_send_message_url
+    payload = { "chat_id": config.telegram_chat_id, "text": message }
+    
+    # Sends the POST request to the Telegram API with the message payload
+    response = requests.post(url, json=payload)
+    
+    # Check if the request was successful
+    if response.status_code == 200:
+        print("Message sent successfully!")
+        return True
+    else:
+        print(f"Failed to send message: {response.status_code} - {response.text}")
+        return False
