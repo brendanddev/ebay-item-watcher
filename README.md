@@ -13,6 +13,14 @@ A tool based in Python that monitors eBay listings and sends alerts when items m
 
 ---
 
+## Versions 
+
+| Version       | Month         | Notes               |
+| --------------| --------------| --------------------|
+| 1.0.0         | July 2025     | Initial Dev Version |
+
+---
+
 ## Getting Started
 
 ```bash
