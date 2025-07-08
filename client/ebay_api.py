@@ -37,13 +37,11 @@ def build_search_params(
     if price_currency:
         filters.append(f"priceCurrency:{price_currency}")
     
-    # Add the pickup postal code filter if provided
-    if pickup_postal_code:
+    # Add the pickup postal code and radius filter if provided
+    if pickup_postal_code and pickup_radius:
         params["pickupPostalCode"] = pickup_postal_code
-    
-    # Add the pickup radius filter if provided
-    if pickup_radius:
         params["pickupRadius"] = str(pickup_radius)
+        filters.append("localPickup:true")
     
     # Add the item location region filter if provided
     if item_location_region:
