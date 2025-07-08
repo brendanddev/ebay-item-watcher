@@ -34,7 +34,6 @@ if __name__ == "__main__":
         limit=15
     )
 
-    
     # Perform the search
     results = search(params)
     if results:
