@@ -13,9 +13,14 @@ from client import config
 
 # Retrieves the access token for the app
 def get_app_access_token():
-    client_id = config.ebay_app_id
-    client_secret = config.ebay_cert_id
     
+    # Select environment
+    is_prod = config.ebay_environment == "production"
+    
+    # Use correct credentials based on environment
+    client_id = config.ebay_app_id_prod if is_prod else config.ebay_app_id
+    client_secret = config.ebay_cert_id_prod if is_prod else config.ebay_cert_id
+        
     auth_string = f"{client_id}:{client_secret}"
     encoded_auth = base64.b64encode(auth_string.encode()).decode()
     
@@ -25,15 +30,18 @@ def get_app_access_token():
         "Authorization": f"Basic {encoded_auth}"
     }
     
-    # Form request data
+    # Set request body with form request data
     data = {
         "grant_type": "client_credentials",
         "scope": "https://api.ebay.com/oauth/api_scope"
     }
 
+    # Choose token url based on environment
+    token_url = "https://api.ebay.com/identity/v1/oauth2/token" if is_prod else \
+                "https://api.sandbox.ebay.com/identity/v1/oauth2/token"
+                
     # Makes the POST request passing necessary headers and data
-    url = "https://api.sandbox.ebay.com/identity/v1/oauth2/token"
-    response = requests.post(url, headers=headers, data=data)
+    response = requests.post(token_url, headers=headers, data=data)
     
     # Checks if the request was successful and returns the access token if it is
     if response.status_code == 200:
