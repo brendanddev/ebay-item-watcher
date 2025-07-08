@@ -18,6 +18,11 @@ ebay_app_id = os.getenv("EBAY_APP_ID")
 ebay_dev_id = os.getenv("EBAY_DEV_ID")
 ebay_cert_id = os.getenv("EBAY_CERT_ID")
 
+# Item watcher production configuration
+ebay_app_id_prod = os.getenv("EBAY_APP_ID_PROD")
+ebay_dev_id_prod = os.getenv("EBAY_DEV_ID_PROD")
+ebay_cert_id_prod = os.getenv("EBAY_CERT_ID_PROD")
+
 # Notifier configuration
 telegram_bot_token = os.getenv("TELEGRAM_BOT_TOKEN")
 telegram_chat_id = os.getenv("TELEGRAM_CHAT_ID")
