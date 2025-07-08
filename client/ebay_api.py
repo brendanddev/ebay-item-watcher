@@ -30,24 +30,17 @@ def build_search_params(
         
     # Add the price range filter if both min and max prices are provided
     if price_min is not None and price_max is not None:
-        price_filter = f"price:{price_min}..{price_max}"
-        filters.append(price_filter)
+        filters.append(f"price:[{price_min}..{price_max}]")
     
     # Add the price currency filter if provided
     if price_currency:
         filters.append(f"priceCurrency:{price_currency}")
     
-    # Add the pickup postal code and radius filter if provided
     if pickup_postal_code and pickup_radius:
         params["pickupPostalCode"] = pickup_postal_code
         params["pickupRadius"] = str(pickup_radius)
-        filters.append("localPickup:true")
-    
-    # Add the item location region filter if provided
     if item_location_region:
         params["itemLocationRegion"] = item_location_region
-    
-    # Add the item location country filter if provided
     if item_location_country:
         params["itemLocationCountry"] = item_location_country
 
@@ -55,7 +48,6 @@ def build_search_params(
     if filters:
         params["filter"] = ",".join(filters)
 
-    # Return the full params dictionary ready for the api req
     return params
 
 
