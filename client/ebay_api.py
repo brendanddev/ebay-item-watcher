@@ -8,6 +8,7 @@ Brendan Dileo - July 2025
 
 import requests
 from client import auth
+from client import config
 
 
 # Builds a dictionary of search parameters for the ebay browse api search endpoint
@@ -69,9 +70,18 @@ def search(params):
         print("Failed to retrieve access token.")
         return
     
-    # Define api endpoint, headers and params for search request
-    url = "https://api.sandbox.ebay.com/buy/browse/v1/item_summary/search"
-    headers = { "Authorization": f"Bearer {token}" }
+    # Check environment
+    is_prod = config.ebay_environment == "production"
+    
+    # Dynamically set the base url based on the environment
+    url = "https://api.ebay.com/buy/browse/v1/item_summary/search" if is_prod else \
+          "https://api.sandbox.ebay.com/buy/browse/v1/item_summary/search"
+    
+    # Define request headers
+    headers = { 
+        "Authorization": f"Bearer {token}",
+        "X-EBAY-C-MARKETPLACE-ID": "EBAY_CA"
+    }
     
     # Make GET request and store response
     response = requests.get(url, headers=headers, params=params)
