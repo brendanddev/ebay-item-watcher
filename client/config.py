@@ -1,6 +1,10 @@
 
-# config.py
-# Brendan Dileo - July 2025
+"""
+config.py
+Loads environment variables and centralizes configuration settings for the app.
+
+Brendan Dileo - July 2025
+"""
 
 import os
 from dotenv import load_dotenv
@@ -18,6 +22,5 @@ ebay_cert_id = os.getenv("EBAY_CERT_ID")
 telegram_bot_token = os.getenv("TELEGRAM_BOT_TOKEN")
 telegram_chat_id = os.getenv("TELEGRAM_CHAT_ID")
 
-if __name__ == "__main__":
-    print("TELEGRAM_BOT_TOKEN:", telegram_bot_token)
-    print("TELEGRAM_CHAT_ID:", telegram_chat_id)
+telegram_base_url = f"https://api.telegram.org/bot{telegram_bot_token}/"
+telegram_send_message_url = telegram_base_url + "sendMessage"
