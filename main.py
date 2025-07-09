@@ -6,6 +6,7 @@ Main entry point to the app
 Brendan Dileo - July 2025
 """
 
+from client.config import postal_prefix, region, country
 from client.auth import get_app_access_token
 from client.ebay_api import build_search_params, search
 from client.notifier import send_telegram_message
@@ -27,10 +28,10 @@ if __name__ == "__main__":
         price_min=5,
         price_max=100,
         price_currency="CAD",
-        pickup_postal_code="L6L",
+        pickup_postal_code=postal_prefix,
         pickup_radius=5,
-        item_location_region="Ontario",
-        item_location_country="CA",
+        item_location_region=region,
+        item_location_country=country,
         canada_only=True,
         limit=15
     )
