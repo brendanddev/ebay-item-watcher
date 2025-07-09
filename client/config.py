@@ -12,6 +12,11 @@ from dotenv import load_dotenv
 # Loads the env variables into the current environment
 load_dotenv()
 
+# Basic configuration
+postal_prefix = os.getenv("POSTAL")
+region = os.getenv("REGION")
+country = os.getenv("COUNTRY")
+
 # Item watcher configuration
 ebay_environment = os.getenv("EBAY_ENV")
 ebay_app_id = os.getenv("EBAY_APP_ID")
