@@ -18,11 +18,12 @@ def build_search_params(
     price_max=None,
     price_currency=None,
     pickup_postal_code=None,
-    pickup_radius=None,
+    pickup_radius=5,
     item_location_region=None,
     item_location_country="CA",
     canada_only=True,
-    limit=25
+    limit=25,
+    sort_by="distance"
 ):
     
     # Initialize params dictionary with required keyword and limit
@@ -44,6 +45,9 @@ def build_search_params(
     if pickup_postal_code and pickup_radius:
         params["pickupPostalCode"] = pickup_postal_code
         params["pickupRadius"] = str(pickup_radius)
+        
+        if sort_by:
+            params["sort"] = "distance"
     if item_location_region:
         params["itemLocationRegion"] = item_location_region
     if item_location_country and not canada_only:

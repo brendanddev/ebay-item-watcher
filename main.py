@@ -27,9 +27,9 @@ if __name__ == "__main__":
         price_min=5,
         price_max=100,
         price_currency="CAD",
-        pickup_postal_code="L6L5W2",
-        pickup_radius=1,
-        item_location_region="ON",
+        pickup_postal_code="L6L",
+        pickup_radius=5,
+        item_location_region="Ontario",
         item_location_country="CA",
         canada_only=True,
         limit=15
@@ -41,6 +41,6 @@ if __name__ == "__main__":
         # print("Search Results:", results)
         formatted_results = format_search_results(results)
         print("Formatted Results:\n", formatted_results)
-        # send_telegram_message(formatted_results)
+        send_telegram_message(formatted_results)
     else:
         print("No results found or search failed.")
