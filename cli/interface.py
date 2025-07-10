@@ -11,6 +11,16 @@ from utils.logger import Logger
 
 logger = Logger().get_logger()
 
+# Prompts the user for notification method to use
+def prompt_for_notification():
+    print("Choose notification method(s):")
+    print("1. Telegram Bot only")
+    print("2. Email only")
+    print("3. Both Telegram Bot and Email")
+    print("4. None (just display results)")
+    choice = input("Enter your choice (1-4): ").strip()
+    return choice 
+
 def run_cli():
     
     # Creates an instance of ArgumentParser object to handle cli args
@@ -47,7 +57,8 @@ def run_cli():
         logger.debug(f"User selected menu option: {choice}")
 
         if choice == "1":
+            notification_choice = prompt_for_notification()
             logger.info("Running 'search' via menu selection")
-            perform_search()
+            perform_search(notification_choice=notification_choice)
         else:
             logger.warning("Invalid command entered.")
