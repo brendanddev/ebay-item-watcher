@@ -7,7 +7,7 @@ Brendan Dileo - July 2025
 """
 
 import logging
-from color_console_handler import ColorConsoleHandler
+from utils.color_console_handler import ColorConsoleHandler
 
 class Logger:
     
