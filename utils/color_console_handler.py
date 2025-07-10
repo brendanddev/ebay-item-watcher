@@ -25,6 +25,11 @@ class ColorConsoleHandler(logging.StreamHandler):
     def __init__(self):
         super().__init__(sys.stdout)
     
+    # Overrides parent implementation to add line of error logging
+    def handleError(self, record):
+        print("Logging error occurred for record: ", record)
+        super().handleError(record)
+    
     # Overrides parent implementation to provide custom color formatting
     def emit(self, record):
         try:
