@@ -4,3 +4,6 @@
 
 # Python cache directories
 __pycache__/
+
+# Bytecode executables
+*.exe
