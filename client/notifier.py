@@ -35,3 +35,14 @@ def send_email_notification(subject: str, message: str):
     msg['Subject'] = subject
     msg['From'] = config.email_from
     msg['To'] = config.email_to
+    
+    try:
+        with smtplib.SMTP(config.email_smtp_server, config.email_smtp_port) as server:
+            server.starttls()  # Upgrade to secure connection
+            server.login(config.email_username, config.email_password)
+            server.sendmail(config.email_from, config.email_to, msg.as_string())
+        print("Email sent successfully!")
+        return True
+    except Exception as e:
+        print(f"Failed to send email: {e}")
+        return False
