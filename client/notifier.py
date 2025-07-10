@@ -7,7 +7,9 @@ Brendan Dileo - July 2025
 """
 
 import requests
+import smtplib
 from client import config
+from email.mime.text import MIMEText
 
 # Sends a message to a telegram chat
 def send_telegram_message(message: str):
@@ -26,3 +28,10 @@ def send_telegram_message(message: str):
     else:
         print(f"Failed to send message: {response.status_code} - {response.text}")
         return False
+    
+# Sends an email notification
+def send_email_notification(subject: str, message: str):
+    msg = MIMEText(message)
+    msg['Subject'] = subject
+    msg['From'] = config.email_from
+    msg['To'] = config.email_to
