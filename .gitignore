@@ -13,3 +13,6 @@ __pycache__/
 # Package distribution files
 *.pkg
 *.zip
+
+# Spec files ?
+.spec
