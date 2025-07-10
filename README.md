@@ -8,8 +8,11 @@ A tool based in Python that monitors eBay listings and sends alerts when items m
 
 ## Features
 
-- Monitor eBay listing based on keywords
+- Basic Executable App
+- Monitor eBay listing based on keywords, price range,
+  location, and more
 - Notifications via Custom Telegram Bot
+- Custom Command Line Logger
 
 ---
 
@@ -18,6 +21,10 @@ A tool based in Python that monitors eBay listings and sends alerts when items m
 | Version       | Month         | Notes               |
 | --------------| --------------| --------------------|
 | 1.0.0         | July 2025     | Initial Dev Version |
+| 1.0.1         | July 2025     | Configured eBay API |
+| 1.0.2         | July 2025     | Added Telegram Bot  |
+| 1.0.3         | July 2025     | Added Custom Logger |
+
 
 ---
 
