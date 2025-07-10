@@ -13,3 +13,6 @@ dist/
 
 # Build directory
 build/
+
+# Temporarily ignore cron logs
+cron.log
