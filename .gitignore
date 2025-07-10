@@ -7,3 +7,9 @@ __pycache__/
 
 # Bytecode executables
 *.exe
+*.pyc
+*.pyo
+
+# Package distribution files
+*.pkg
+*.zip
