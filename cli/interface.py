@@ -6,10 +6,16 @@ Brendan Dileo - July 2025
 """
 
 import argparse
+from time import sleep
 from cli.commands import perform_search
 from utils.logger import Logger
+from rich.console import Console
+from rich.spinner import Spinner
+from InquirerPy import inquirer
 
 logger = Logger().get_logger()
+console = Console()
+    
 
 # Prompts the user for notification method to use
 def prompt_for_notification():
