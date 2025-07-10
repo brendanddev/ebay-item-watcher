@@ -34,3 +34,11 @@ telegram_chat_id = os.getenv("TELEGRAM_CHAT_ID")
 
 telegram_base_url = f"https://api.telegram.org/bot{telegram_bot_token}/"
 telegram_send_message_url = telegram_base_url + "sendMessage"
+
+# Email configuration
+email_smtp_server = os.getenv("EMAIL_SMTP_SERVER")
+email_smtp_port = int(os.getenv("EMAIL_SMTP_PORT", 587))
+email_username = os.getenv("EMAIL_USERNAME")
+email_password = os.getenv("EMAIL_PASSWORD")
+email_from = email_username
+email_to = os.getenv("EMAIL_RECIPIENT", email_username)
