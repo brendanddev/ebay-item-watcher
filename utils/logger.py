@@ -6,8 +6,9 @@ A custom configurable loggier for the ebay item watcher
 Brendan Dileo - July 2025
 """
 
-import sys
 import logging
+
+from color_console_handler import ColorConsoleHandler
 
 class Logger:
     
@@ -33,13 +34,23 @@ class Logger:
         # conditionally add console or file handler
         if not self.logger.handlers:
             
+            # Default format for log messages
             formatter = logging.Formatter(
-                f"%(asctime)s - {self._colorize(name, name_color)} - %(levelname)s - %(message)s",
+                f"%(asctime)s - {self(name, name_color)} - %(levelname)s - %(message)s",
                 datefmt=timestamp_format,
             )
             
+            # Console output
             if to_console:
+                console_handler = ColorConsoleHandler()
+                console_handler.setFormatter(formatter)
+                self.logger.addHandler(console_handler)
+            
+            # File output
             if to_file:
+                file_handler = logging.FileHandler(file_name)
+                file_handler.setFormatter(formatter)
+                self.logger.addHandler(file_handler)
     
     # Get current instance of the logger
     def get_logger(self):

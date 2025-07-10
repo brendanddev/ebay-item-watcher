@@ -25,7 +25,7 @@ class ColorConsoleHandler(logging.StreamHandler):
     def __init__(self):
         super().__init__(sys.stdout)
     
-    # Overrides parent implementation to add line of error logging
+    # Logs an error message before delegating error handling to parent
     def handleError(self, record):
         print("Logging error occurred for record: ", record)
         super().handleError(record)
@@ -40,5 +40,4 @@ class ColorConsoleHandler(logging.StreamHandler):
             self.stream.write(f"{color}{msg}{self.COLOR_CODES['RESET']}\n")
             self.flush()
         except Exception:
-            # Call parent method to handle errors
             self.handleError(record)
