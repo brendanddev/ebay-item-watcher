@@ -2,17 +2,14 @@
 # Environment variables
 .env
 
+# 
+*.spec
+
 # Python cache directories
 __pycache__/
 
-# Bytecode executables
-*.exe
-*.pyc
-*.pyo
+# Distribution directory
+dist/
 
-# Package distribution files
-*.pkg
-*.zip
-
-# Spec files ?
-.spec
+# Build directory
+build/
